@@ -16,6 +16,10 @@ class ViewController: UITableViewController {
     // find the resource files prefixed with nssl and add them to the pictures array
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Storm Viewer"
+        
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
