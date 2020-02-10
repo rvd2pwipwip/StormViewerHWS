@@ -20,8 +20,8 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Storm Viewer"
         
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
+        let fm = FileManager.default;
+        let path = Bundle.main.resourcePath!;
         let items = try! fm.contentsOfDirectory(atPath: path)
         
         for item in items {
@@ -29,6 +29,7 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
+        pictures.sort()
     }
     // 2- Set the number of rows
     // create as many rows as items in pictures array (numberOfRowsInSection)
@@ -48,8 +49,12 @@ class ViewController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // 2: success! Set its selectedImage property
             vc.selectedImage = pictures[indexPath.row]
+            
+            vc.selectedImageNumber = indexPath.row + 1
+            vc.totalImages = pictures.count
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
 }

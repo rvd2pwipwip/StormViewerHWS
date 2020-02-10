@@ -11,6 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var selectedImage: String? // doesn't exist yet at DetailViewController's creation
+    var selectedImageNumber = 0
+    var totalImages = 0
 
     @IBOutlet var imageView: UIImageView!
     
@@ -18,7 +20,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
-        title = selectedImage
+        title = "Picture \(selectedImageNumber) of \(totalImages)"
 
         if let imageToLoad = selectedImage { // check and unwrap the optional in selectedImage
             imageView.image  = UIImage(named: imageToLoad) // if selectedImage has a value, pass it to UIImage to load it in imageView
